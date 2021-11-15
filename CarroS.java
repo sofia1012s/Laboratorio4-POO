@@ -2,5 +2,6 @@ public interface CarroS extends Radio {
     
 
     public String cambiarBocinaAAuriculares(int bocinaAuricular);
-    public String planificarVIajes(int viajes);
+    public void setDestino(String destino);
+    public void getDestino(String destino);
 }

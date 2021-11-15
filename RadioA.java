@@ -21,6 +21,9 @@ class RadioA implements CarroA{
 
     //contactos
     private String[] contactos = new String[]{"juanito", "papa", "mama", "abuelo"};
+
+    //Historial de llamadas
+    private List<String> historialLlamadas = new ArrayList<>();    
     
 
 
@@ -134,20 +137,48 @@ class RadioA implements CarroA{
         return contactos; 
     }
 
-    public void llamarContacto(){
-        
+    public String llamarContacto(int opcion){ //Elige al contacto que desea llamar
+        String Llamar = "";
+        if (opcion == 1){
+            Llamar = "Llamando al contacto juanito"
+            historialLlamadas.add("juanito");
+        }
+        if (opcion == 2){
+            Llamar = "Llamando al contacto papa"
+            historialLlamadas.add("papa");
+        }
+        if (opcion == 3){
+            Llamar = "Llamando al contacto mama"
+            historialLlamadas.add("mama");
+        }
+        if (opcion == 4){
+            Llamar = "Llamando al contacto abuelo"
+            historialLlamadas.add("abuelo");
+        }
+        return Llamar; 
     }
 
-    public void finalizarLlamada(){}
+    public String finalizarLlamada(int opcion){
+        String finalizar = "";
 
-   
+        if(opcion == 1){
+            finalizar = "Llamada finalizada";
+        }
+        return finalizar; 
+    }
 
-      
-   
-    public String LlamarUltimoContacto(int ultimo){
+    public String LlamarUltimoContacto(int ultimo){//Hay un arreglo que guarda las llamadas y Se muestra el último contacto que llamó
+        int numeroLlamada = historialLlamadas.size(); 
+        int ultimoContacto = historialLlamadas.get(numeroLlamada - 1);
+        return ultimoContacto; 
 
     }
     public String verTarjetasPresentacion(int tarjetas){
+        String Tarjetas = "";
+        if(tarjetas == 1){
+            Tarjetas = "Mostrando tarjetas de presetación";
+        }
+        return Tarjetas; 
 
     }
 }

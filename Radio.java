@@ -6,25 +6,25 @@ public interface Radio {
 
     public abstract String encenderApagar(int opcion);
 
-    public abstract void cambiarVolumen();
+    public abstract void cambiarVolumen(int opcion);
 
-    public abstract void cambiarEmisora();
+    public abstract void cambiarEmisora(int opcion);
     
-    public abstract void guardarEmisora();
+    public abstract void guardarEmisora(double emisora);
 
-    public abstract void cargarEmisora();
+    public abstract void cargarEmisora(int numeroEmisora);
 
-    public abstract void seleccionarLista();
+    public abstract void seleccionarLista(int numLista);
 
-    public abstract void cambiarCancion();
+    public abstract void cambiarCancion(int siguienteAnerior);
 
-    public abstract String conectarTelefono();
+    public abstract String conectarTelefono(int telefono);
 
     public abstract String [] mostrarContactos();
 
-    public abstract void llamarContacto();
+    public abstract String llamarContacto(int opcion);
 
-    public abstract void finalizarLlamada();
+    public abstract String finalizarLlamada(int opcion);
 
 
 
