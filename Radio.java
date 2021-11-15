@@ -1,8 +1,10 @@
-public abstract class Radio {
+public interface Radio {
 
-    private int CambiarFMaAM; 
+    public int CambiarFMaAM = 1;
+    
+    public int incrementarVolumen  = 1;
 
-    public abstract void encenderApagar();
+    public abstract String encenderApagar(int opcion);
 
     public abstract void cambiarVolumen();
 
@@ -16,16 +18,14 @@ public abstract class Radio {
 
     public abstract void cambiarCancion();
 
-    public abstract void conectarTelefono();
+    public abstract String conectarTelefono();
 
-    public abstract void mostrarContactos();
+    public abstract String [] mostrarContactos();
 
     public abstract void llamarContacto();
 
     public abstract void finalizarLlamada();
 
-    public abstract String LlamarUltimoContacto(int ultimo);
 
-    public abstract String verTarjetasPresentacion(int tarjetas);
 
 }
