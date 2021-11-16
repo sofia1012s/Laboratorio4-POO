@@ -594,6 +594,71 @@ public class Controlador {
                             break;
 
                         case 4: // Productividad
+                            String destinoA = "No hay viaje planificado";
+                            boolean bandera9 = true;
+                            int opcion = 0;
+
+                            while (bandera9) {
+                                vis.pantallaProductividadS(radioS.getDestino(), destinoA, radioS.getVolumen());
+                                do {
+                                    try {
+                                        vis = new Vista();
+                                        opcion = vis.viajar();
+                                        p = true;
+                                    } catch (InputMismatchException ex) {
+                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                        p = false;
+                                    }
+                                } while (!p);
+
+                                switch (opcion) {
+                                case 1:
+                                    radioS.setDestino(vis.destino());
+                                    break;
+                                case 2:
+                                    destinoA = radioS.getDestino();
+                                    radioS.setDestino("No hay viaje planificado");
+                                    break;
+                                case 3:
+                                    boolean bVolumen = true;
+                                    while (bVolumen) {
+                                        int opVolumen = 0;
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                opVolumen = vis.menuVolumen();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (opVolumen == 1) {
+                                            radioS.cambiarVolumen(1);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 2) {
+                                            radioS.cambiarVolumen(2);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 3) {
+                                            bVolumen = false;
+
+                                        } else {
+                                            vis.fueraMenu();
+                                        }
+                                    }
+                                    break;
+
+                                case 4:
+                                    bandera9 = false;
+                                    break;
+
+                                default:
+                                    vis.fueraMenu();
+                                    break;
+                                }
+
+                            }
 
                             break;
 
@@ -1141,7 +1206,88 @@ public class Controlador {
                             break;
 
                         case 4: // Productividad
+                            boolean bandera10 = true;
+                            int contacto = 0;
+                            int opcion2 = 0;
 
+                            while (bandera10) {
+                                vis.pantallaProductividadA(contacto, radioA.getVolumen());
+                                do {
+                                    try {
+                                        vis = new Vista();
+                                        opcion2 = vis.productividadA();
+                                        p = true;
+                                    } catch (InputMismatchException ex) {
+                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                        p = false;
+                                    }
+                                } while (!p);
+
+                                switch (opcion2) {
+                                case 1:
+                                    vis.imprimir(radioA.mostrarContactos());
+                                    boolean b = true;
+                                    while (b) {
+
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                contacto = vis.mostrar();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (contacto > 4) {
+                                            vis.fueraMenu();
+                                        } else {
+                                            b = false;
+                                        }
+                                    }
+
+                                    break;
+                                case 2:
+                                    boolean bVolumen = true;
+                                    while (bVolumen) {
+                                        int opVolumen = 0;
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                opVolumen = vis.menuVolumen();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (opVolumen == 1) {
+                                            radioA.cambiarVolumen(1);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 2) {
+                                            radioA.cambiarVolumen(2);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 3) {
+                                            bVolumen = false;
+
+                                        } else {
+                                            vis.fueraMenu();
+                                        }
+                                    }
+                                    break;
+
+                                case 3:
+                                    bandera10 = false;
+                                    break;
+
+                                default:
+                                    vis.fueraMenu();
+                                    break;
+                                }
+
+                            }
                             break;
 
                         case 5: // Salir
@@ -1695,7 +1841,69 @@ public class Controlador {
                             break;
 
                         case 4: // Productividad
+                            boolean aa = true;
+                            String tiempo = radioC.pronosticoTiempo(1);
 
+                            while (aa) {
+
+                                vis.pantallaProductividadC(tiempo, radioC.getVolumen());
+                                int ya = 0;
+
+                                do {
+                                    try {
+                                        vis = new Vista();
+                                        ya = vis.tiempo();
+                                        p = true;
+                                    } catch (InputMismatchException ex) {
+                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                        p = false;
+                                    }
+                                } while (!p);
+
+                                switch (ya) {
+                                case 1:
+                                    tiempo = radioC.pronosticoTiempo(1);
+                                    break;
+                                case 2:
+                                    boolean bVolumen = true;
+                                    while (bVolumen) {
+                                        int opVolumen = 0;
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                opVolumen = vis.menuVolumen();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (opVolumen == 1) {
+                                            radioC.cambiarVolumen(1);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 2) {
+                                            radioC.cambiarVolumen(2);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 3) {
+                                            bVolumen = false;
+
+                                        } else {
+                                            vis.fueraMenu();
+                                        }
+                                    }
+                                    break;
+
+                                case 3:
+                                    aa = false;
+                                    break;
+
+                                default:
+                                    vis.fueraMenu();
+                                    break;
+                                }
+
+                            }
                             break;
 
                         case 5: // Salir

@@ -51,7 +51,7 @@ public class Vista {
 
     public int modoRadio() {
         String Mensaje = "\nEn que modo desea comenzar su radio?\n" + "1. Modo Radio\n" + "2. Modo Reproduccion\n"
-                + "3. Modo telefono\n" + "4. Modo Productividad\n" + "5. Cambiar clase radio";
+                + "3. Modo telefono\n" + "4. Modo Productividad\n" + "5. Cambiar clase radio\n";
         System.out.println(
                 "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
                         + Mensaje);
@@ -278,11 +278,103 @@ public class Vista {
     }
 
     public void pantallaTelefonoC(String telefono, String contacto, String espera, int volumen) {
-        String Mensaje = "\n----- Modo Telefono -----\n" + "\nTelefono conectado : " + telefono + " \n-" + contacto + " \n-" + espera
-                + "\n-Volumen: " + volumen;
+        String Mensaje = "\n----- Modo Telefono -----\n" + "\nTelefono conectado : " + telefono + " \n-" + contacto
+                + " \n-" + espera + "\n-Volumen: " + volumen;
         System.out.println(
                 "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
                         + Mensaje);
     }
 
+    public void pantallaProductividadS(String viaje, String viajeA, int volumen) {
+        String Mensaje = "\n----- Modo Productividad -----\n" + " \n-Viaje actual: " + viajeA + "\n-Proximo viaje : "
+                + viaje + "\n-Volumen: " + volumen;
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+    }
+
+    public int viajar() {
+        String Mensaje = "\nQue desea hacer?\n" + "1. Planificar viaje\n" + "2. Viajar a lugar planificado\n"
+                + "3. Subir volumen\n" + "4. Salir Modo Productividad\n";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public String destino() {
+        System.out.println("\nEscriba a donde desea ir: ");
+        scan.nextLine();
+        String nombre = scan.nextLine();
+
+        return nombre;
+    }
+
+    public int productividadA() {
+        String Mensaje = "\nQue desea hacer?\n" + "1. Ver tarjeta de presentacion\n" + "2. Subir Volumen\n"
+                + "3. Salir Modo Productividad\n";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public void pantallaProductividadA(int c, int volumen) {
+        String contacto = " ";
+        switch (c) {
+        case 1:
+            contacto = "juanito";
+            break;
+
+        case 2:
+            contacto = "papa";
+            break;
+
+        case 3:
+            contacto = "mama";
+            break;
+
+        case 4:
+            contacto = "abuelo";
+            break;
+
+        default:
+            break;
+        }
+
+        String Mensaje = "\n----- Modo Productividad -----\n" + " \n-Observando tarjeta de presentacion actual de : "
+                + contacto + "\n-Volumen: " + volumen;
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+    }
+
+    public int mostrar() {
+        String Mensaje = "\nDe cual contacto desea ver la tarjeta de presentacion?\n" + "1. Juanito\n" + "2. Papa\n"
+                + "3. Mama\n" + "4. Abuelo\n";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public void pantallaProductividadC(String tiempo, int volumen) {
+        String Mensaje = "\n----- Modo Productividad -----\n" + tiempo + "\n-Volumen: " + volumen;
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+    }
+
+    public int tiempo() {
+        String Mensaje = "\nQue desea hacer?\n" + "1. Refrescar pronostico del tiempo\n" + "2. Subir volumen\n"
+                + "3. Salir modo productividad\n" ;
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
 }
