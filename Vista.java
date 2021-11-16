@@ -220,7 +220,30 @@ public class Vista {
 
     public int Menu4S() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Mostrar contactos\n" + "2. Llamar a contacto\n"
-                + "3. Finalizar llamada\n" + "4. Cambiar a bocinas o auriculares\n" + "5. Salir modo telefono\n";
+                + "3. Finalizar llamada\n" + "4. Cambiar a bocinas o auriculares\n" + "5. Subir volumen\n"
+                + "6. Salir modo telefono\n";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public int Menu4A() {
+        String Mensaje = "\nQue desea hacer?\n" + "1. Mostrar contactos\n" + "2. Llamar a contacto\n"
+                + "3. Finalizar llamada\n" + "4. Llamar al ultimo contacto que se llamo\n" + "5. Subir volumen\n"
+                + "6. Salir modo telefono\n";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public int Menu4C() {
+        String Mensaje = "\nQue desea hacer?\n" + "1. Mostrar contactos\n" + "2. Llamar a contacto\n"
+                + "3. Finalizar llamada\n" + "4. Colocar llamada en espera\n" + "5. Subir volumen\n"
+                + "6. Salir modo telefono\n";
         System.out.println(
                 "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
                         + Mensaje);
@@ -229,13 +252,37 @@ public class Vista {
     }
 
     public int llamar() {
-        String Mensaje = "\nA cual contacto desea llamar?\n" + "1. Juanito\n" + "2. Papa\n"
-                + "3. Mama\n" + "4. Abuelo\n";
+        String Mensaje = "\nA cual contacto desea llamar?\n" + "1. Juanito\n" + "2. Papa\n" + "3. Mama\n"
+                + "4. Abuelo\n";
         System.out.println(
                 "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
                         + Mensaje);
         int opcion = scan.nextInt();
         return opcion;
+    }
+
+    public void pantallaTelefono(String telefono, String contacto, String bocinasAuriculares, int volumen) {
+        String Mensaje = "\n----- Modo Telefono -----\n" + "\nTelefono conectado : " + telefono + " \n-" + contacto
+                + "\n-Llamando por : " + bocinasAuriculares + "\n-Volumen: " + volumen;
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+    }
+
+    public void pantallaTelefonoA(String telefono, String contacto, int volumen) {
+        String Mensaje = "\n----- Modo Telefono -----\n" + "\nTelefono conectado : " + telefono + " \n-" + contacto
+                + "\n-Volumen: " + volumen;
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+    }
+
+    public void pantallaTelefonoC(String telefono, String contacto, String espera, int volumen) {
+        String Mensaje = "\n----- Modo Telefono -----\n" + "\nTelefono conectado : " + telefono + " \n-" + contacto + " \n-" + espera
+                + "\n-Volumen: " + volumen;
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
     }
 
 }

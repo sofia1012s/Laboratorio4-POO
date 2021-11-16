@@ -1,7 +1,5 @@
 import java.util.*;
 
-import javax.lang.model.util.ElementScanner14;
-
 public class Controlador {
     public static void main(String[] args) {
         Vista vis = new Vista();
@@ -475,9 +473,12 @@ public class Controlador {
                                 if (telefono == 1) {
                                     vis.imprimir(radioS.conectarTelefono(telefono));
                                     boolean conectado = true;
-
+                                    int op = 0;
+                                    int contacto = 0;
+                                    String bA = "Bocinas";
                                     while (conectado) {
-                                        int op = 0;
+                                        vis.pantallaTelefono("Iphone 13", radioS.llamarContacto(contacto), bA,
+                                                radioS.getVolumen());
 
                                         do {
                                             try {
@@ -492,6 +493,7 @@ public class Controlador {
 
                                         switch (op) {
                                         case 1: // Mostrar contactos
+                                            vis.imprimir("Lista de contactos");
                                             vis.imprimir(radioS.mostrarContactos());
 
                                             break;
@@ -500,7 +502,7 @@ public class Controlador {
                                             boolean bandera8 = true;
 
                                             while (bandera8) {
-                                                int contacto = 0;
+
                                                 do {
                                                     try {
                                                         vis = new Vista();
@@ -523,13 +525,53 @@ public class Controlador {
                                             }
                                             break;
                                         case 3: // Finalizar llamada
+                                            contacto = 0;
+                                            vis.imprimir(radioS.finalizarLlamada(1));
 
                                             break;
                                         case 4: // Cambiar a bocinas o auriculares
+                                            if (bA == "Bocinas") {
+                                                bA = "Auriculares";
+
+                                            } else if (bA == "Auriculares") {
+                                                bA = "Bocinas";
+
+                                            }
 
                                             break;
 
-                                        case 5: // Salir
+                                        case 5: // Volumen
+                                            boolean bVolumen = true;
+                                            while (bVolumen) {
+                                                int opVolumen = 0;
+                                                do {
+                                                    try {
+                                                        vis = new Vista();
+                                                        opVolumen = vis.menuVolumen();
+                                                        p = true;
+                                                    } catch (InputMismatchException ex) {
+                                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                                        p = false;
+                                                    }
+                                                } while (!p);
+
+                                                if (opVolumen == 1) {
+                                                    radioS.cambiarVolumen(1);
+                                                    bVolumen = false;
+                                                } else if (opVolumen == 2) {
+                                                    radioS.cambiarVolumen(2);
+                                                    bVolumen = false;
+                                                } else if (opVolumen == 3) {
+                                                    bVolumen = false;
+
+                                                } else {
+                                                    vis.fueraMenu();
+                                                }
+                                            }
+
+                                            break;
+
+                                        case 6: // Salir
                                             conectado = false;
                                             bandera7 = false;
                                             break;
@@ -548,7 +590,6 @@ public class Controlador {
                                 else {
                                     vis.fueraMenu();
                                 }
-
                             }
                             break;
 
@@ -960,6 +1001,142 @@ public class Controlador {
                             break;
 
                         case 3: // Telefono
+                            vis.noTelefono();
+                            int telefono = 0;
+                            boolean bandera7 = true;
+
+                            while (bandera7) {
+                                do {
+                                    try {
+                                        vis = new Vista();
+                                        telefono = vis.Menu3();
+                                        p = true;
+                                    } catch (InputMismatchException ex) {
+                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                        p = false;
+                                    }
+                                } while (!p);
+
+                                if (telefono == 1) {
+                                    vis.imprimir(radioA.conectarTelefono(telefono));
+
+                                    boolean conectado = true;
+                                    int op = 0;
+                                    int contacto = 0;
+                                    int contactoUltimo = 0;
+
+                                    while (conectado) {
+                                        vis.pantallaTelefonoA("Iphone 13", radioA.llamarContacto(contacto),
+                                                radioA.getVolumen());
+
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                op = vis.Menu4A();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        switch (op) {
+                                        case 1: // Mostrar contactos
+                                            vis.imprimir("Lista de contactos");
+                                            vis.imprimir(radioA.mostrarContactos());
+
+                                            break;
+                                        case 2: // Llamar a contacto
+                                            vis.imprimir(radioA.mostrarContactos());
+                                            boolean bandera8 = true;
+
+                                            while (bandera8) {
+
+                                                do {
+                                                    try {
+                                                        vis = new Vista();
+                                                        contacto = vis.llamar();
+                                                        p = true;
+                                                    } catch (InputMismatchException ex) {
+                                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                                        p = false;
+                                                    }
+                                                } while (!p);
+
+                                                if (contacto > 4) {
+                                                    vis.fueraMenu();
+
+                                                } else {
+                                                    vis.imprimir(radioA.llamarContacto(contacto));
+                                                    contactoUltimo = contacto;
+                                                    bandera8 = false;
+                                                }
+
+                                            }
+                                            break;
+                                        case 3: // Finalizar llamada
+                                            contacto = 0;
+                                            vis.imprimir(radioA.finalizarLlamada(1));
+
+                                            break;
+                                        case 4: // Llamar al ultimo contacto que se llamo
+                                            vis.imprimir(radioA.llamarContacto(contactoUltimo));
+                                            contacto = contactoUltimo;
+
+                                            break;
+
+                                        case 5: // Volumen
+                                            boolean bVolumen = true;
+                                            while (bVolumen) {
+                                                int opVolumen = 0;
+                                                do {
+                                                    try {
+                                                        vis = new Vista();
+                                                        opVolumen = vis.menuVolumen();
+                                                        p = true;
+                                                    } catch (InputMismatchException ex) {
+                                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                                        p = false;
+                                                    }
+                                                } while (!p);
+
+                                                if (opVolumen == 1) {
+                                                    radioA.cambiarVolumen(1);
+                                                    bVolumen = false;
+                                                } else if (opVolumen == 2) {
+                                                    radioA.cambiarVolumen(2);
+                                                    bVolumen = false;
+                                                } else if (opVolumen == 3) {
+                                                    bVolumen = false;
+
+                                                } else {
+                                                    vis.fueraMenu();
+                                                }
+                                            }
+
+                                            break;
+
+                                        case 6: // Salir
+                                            conectado = false;
+                                            bandera7 = false;
+                                            break;
+
+                                        default:
+                                            vis.fueraMenu();
+                                            break;
+                                        }
+                                    }
+                                    bandera7 = false;
+
+                                } else if (telefono == 2) {
+                                    bandera7 = false;
+                                }
+
+                                else {
+                                    vis.fueraMenu();
+                                }
+
+                            }
 
                             break;
 
@@ -1372,6 +1549,148 @@ public class Controlador {
                             break;
 
                         case 3: // Telefono
+                            vis.noTelefono();
+                            int telefono = 0;
+                            boolean bandera7 = true;
+
+                            while (bandera7) {
+                                do {
+                                    try {
+                                        vis = new Vista();
+                                        telefono = vis.Menu3();
+                                        p = true;
+                                    } catch (InputMismatchException ex) {
+                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                        p = false;
+                                    }
+                                } while (!p);
+
+                                if (telefono == 1) {
+                                    vis.imprimir(radioC.conectarTelefono(telefono));
+
+                                    boolean conectado = true;
+                                    int op = 0;
+                                    int contacto = 0;
+                                    String espera = "No se tiene ninguna llamada en espera";
+
+                                    while (conectado) {
+                                        vis.pantallaTelefonoC("Iphone 13", radioC.llamarContacto(contacto), espera,
+                                                radioC.getVolumen());
+
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                op = vis.Menu4C();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        switch (op) {
+                                        case 1: // Mostrar contactos
+                                            vis.imprimir("Lista de contactos");
+                                            vis.imprimir(radioC.mostrarContactos());
+
+                                            break;
+                                        case 2: // Llamar a contacto
+                                            vis.imprimir(radioC.mostrarContactos());
+                                            boolean bandera8 = true;
+
+                                            while (bandera8) {
+
+                                                do {
+                                                    try {
+                                                        vis = new Vista();
+                                                        contacto = vis.llamar();
+                                                        p = true;
+                                                    } catch (InputMismatchException ex) {
+                                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                                        p = false;
+                                                    }
+                                                } while (!p);
+
+                                                if (contacto > 4) {
+                                                    vis.fueraMenu();
+
+                                                } else {
+                                                    vis.imprimir(radioC.llamarContacto(contacto));
+                                                    bandera8 = false;
+                                                }
+
+                                            }
+                                            break;
+                                        case 3: // Finalizar llamada
+                                            contacto = 0;
+                                            espera = "No se tiene ninguna llamada en espera";
+                                            vis.imprimir(radioC.finalizarLlamada(1));
+
+                                            break;
+                                        case 4: // Colocar llamada en espera
+                                            if (contacto > 0 && espera == "No se tiene ninguna llamada en espera") {
+                                                // vis.imprimir(radioC.cambiarLlamadaEspera(1));
+                                                espera = "La llamada se encuentra en espera";
+
+                                            } else if (contacto > 0 && espera == "La llamada se encuentra en espera") {
+                                                espera = "No se tiene ninguna llamada en espera";
+
+                                            }
+
+                                            break;
+
+                                        case 5: // Volumen
+                                            boolean bVolumen = true;
+                                            while (bVolumen) {
+                                                int opVolumen = 0;
+                                                do {
+                                                    try {
+                                                        vis = new Vista();
+                                                        opVolumen = vis.menuVolumen();
+                                                        p = true;
+                                                    } catch (InputMismatchException ex) {
+                                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                                        p = false;
+                                                    }
+                                                } while (!p);
+
+                                                if (opVolumen == 1) {
+                                                    radioC.cambiarVolumen(1);
+                                                    bVolumen = false;
+                                                } else if (opVolumen == 2) {
+                                                    radioC.cambiarVolumen(2);
+                                                    bVolumen = false;
+                                                } else if (opVolumen == 3) {
+                                                    bVolumen = false;
+
+                                                } else {
+                                                    vis.fueraMenu();
+                                                }
+                                            }
+
+                                            break;
+
+                                        case 6: // Salir
+                                            conectado = false;
+                                            bandera7 = false;
+                                            break;
+
+                                        default:
+                                            vis.fueraMenu();
+                                            break;
+                                        }
+                                    }
+                                    bandera7 = false;
+
+                                } else if (telefono == 2) {
+                                    bandera7 = false;
+                                }
+
+                                else {
+                                    vis.fueraMenu();
+                                }
+
+                            }
 
                             break;
 
