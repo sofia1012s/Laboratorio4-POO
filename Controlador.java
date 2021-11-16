@@ -1,6 +1,19 @@
+/**
+ * Controlador.java
+ * 
+ * @author Jeremy Mejía, Héctor de León, Sofía Salguero
+ * @version 16/11/2021 
+ * 
+ * Clase con método main para correr el programa
+ */
+
 import java.util.*;
 
 public class Controlador {
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         Vista vis = new Vista();
 

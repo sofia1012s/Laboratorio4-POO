@@ -1,189 +1,363 @@
+/**
+ * RadioC.java
+ * 
+ * @author Jeremy Mejía, Héctor de León, Sofía Salguero
+ * @version 16/11/2021 
+ * 
+ * Clase de radioC que hacer override a métodos de clases madre
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-class RadioC implements CarroC{
+class RadioC implements CarroC {
 
     private int volumen = 0;
     private double emisora = 80.0;
-    private int numeroDeLista = 0;
+    private int numeroDeLista = 1;
     private int contadorCancion = 0;
-    private int valorTiempo = (int)(Math.random()*3+1);
-    private List<String> emisorasGuardadas = new ArrayList<>();
-    //Lista de reproduccion 1
-    private String[] nombreCancion1 = new String[]{"hola", "adios", "100azo", "verano"};
-    private String[] duracion1 = new String[]{"2 minutos", "3 minutos", "4 minutos", "5 minutos"};
-    private String[] autor1 = new String[]{"Hector", "Sofi Sofia", "Jeremaya", "Phineas y pherb"};
-    private String[] genero1 = new String[]{"pop", "Perreo intenso", "Reggae", "infantil"};
- //Lista de reproduccion 2
-    private String[] nombreCancion2 = new String[]{"hola", "adios", "100azo", "verano"};
-    private String[] duracion2 = new String[]{"2 minutos", "3 minutos", "4 minutos", "5 minutos"};
-    private String[] autor2 = new String[]{"Hector", "Sofi Sofia", "Jeremaya", "Phineas y pherb"};
-    private String[] genero2 = new String[]{"pop", "Perreo intenso", "Reggae", "infantil"};
+    private int valorTiempo = (int) (Math.random() * 3 + 1);
+    private List<Double> emisorasGuardadas = new ArrayList<>();
+    // Lista de reproduccion 1
+    private String[] nombreCancion1 = new String[] { "hola", "adios", "100azo", "verano" };
+    private String[] duracion1 = new String[] { "2 minutos", "3 minutos", "4 minutos", "5 minutos" };
+    private String[] autor1 = new String[] { "Hector", "Sofi Sofia", "Jeremaya", "Phineas y pherb" };
+    private String[] genero1 = new String[] { "pop", "Perreo intenso", "Reggae", "infantil" };
 
-    //contactos
-    private String[] contactos = new String[]{"juanito", "papa", "mama", "abuelo"};
+    // Lista de reproduccion 2
+    private String[] nombreCancion2 = new String[] { "100azo", "verano", "hola", "adios" };
+    private String[] duracion2 = new String[] { "5 minutos", "2 minutos", "4 minutos", "3 minutos" };
+    private String[] autor2 = new String[] { "Hector", "Phineas y pherb", "Jeremaya", "Sofi Sofia" };
+    private String[] genero2 = new String[] { "pop", "infantil", "Reggae", "Perreo intenso" };
+
+    // contactos
+    private String[] contactos = new String[] { "juanito", "papa", "mama", "abuelo" };
+
     
-
-
-    public String encenderApagar( int opcion){
+    /** 
+     * @param opcion
+     * @return String
+     */
+    public String encenderApagar(int opcion) {
         String variable = "";
-        switch(opcion){
-            case 1: //opcion 1 es para encender el radio
-                variable = "Se ha encendido el radio!!";
-                break;
-            case 2://esta para apagarlo
+        switch (opcion) {
+        case 1: // opcion 1 es para encender el radio
+            variable = "Se ha encendido el radio!!";
+            break;
+        case 2:// esta para apagarlo
             variable = "Se apago el radio.";
-                break;
+            break;
         }
         return variable;
     }
 
-    public void cambiarVolumen( int opcion){
-        switch(opcion){
-            case 1://opcion 1 es para subir volumen (solo llega a 10)
-                if(volumen < 10){
-                    volumen = volumen + incrementarVolumen;
-                }
-
-                if(volumen == 10){
-                    volumen = 10;
-                }
-                break;
-            case 2://opcion 2 es para bajar volumen (no baja de  0)
-
-                if(volumen > 0){
-                    volumen = volumen - incrementarVolumen;
-                }
-
-                if(volumen == 0){
-                    volumen = 0;
-                }
-                 break;
-        }
-    }
-
-    public void cambiarEmisora(int opcion){
-        switch(opcion){
-            case 1://es parecido a el metodo cambiarVolumen(las emisoras empiezan en 80.0 y terminan en 110.0)
-                if(emisora < 110.0){
-                    emisora = emisora + 0.5;
-                }
-
-                if(emisora == 110.0){
-                    emisora = 110.0;
-                }
-                break;
-            case 2:
-
-                if(emisora > 80.0){
-                    emisora = emisora - 0.5;
-                }
-
-                if(emisora == 80.0){
-                    emisora = 80.0;
-                }
-                 break;
-        }
-
-    }
     
-    public void guardarEmisora(double emisora){//Le da libertad al usuario de escribir directamente la emisora que desea guardar
-        //Hay que indicarle que las emisoras son de 80.0 a 110.0 :)
-        String emisoraString = String.valueOf(emisora);//convierte el valor a string para guardarlo en el arraylist como strng
-        emisorasGuardadas.add(emisoraString);
+    /** 
+     * @param opcion
+     */
+    public void cambiarVolumen(int opcion) {
+        switch (opcion) {
+        case 1:// opcion 1 es para subir volumen (solo llega a 10)
+            if (volumen < 10) {
+                volumen = volumen + incrementarVolumen;
+            }
+
+            if (volumen == 10) {
+                volumen = 10;
+            }
+            break;
+        case 2:// opcion 2 es para bajar volumen (no baja de 0)
+
+            if (volumen > 0) {
+                volumen = volumen - incrementarVolumen;
+            }
+
+            if (volumen == 0) {
+                volumen = 0;
+            }
+            break;
+        }
     }
 
-    public String cargarEmisora(int numeroEmisora){
-        int nuEmisora = numeroEmisora -1 ;//para que empiece en 0
-        String escogida = emisorasGuardadas.get(nuEmisora);
-        return escogida;
+    
+    /** 
+     * @param opcion
+     */
+    public void cambiarEmisora(int opcion) {
+        switch (opcion) {
+        case 1:// es parecido a el metodo cambiarVolumen(las emisoras empiezan en 80.0 y
+               // terminan en 110.0)
+            if (emisora < 110.0) {
+                emisora = emisora + 0.5;
+            }
+
+            if (emisora == 110.0) {
+                emisora = 110.0;
+            }
+            break;
+        case 2:
+
+            if (emisora > 80.0) {
+                emisora = emisora - 0.5;
+            }
+
+            if (emisora == 80.0) {
+                emisora = 80.0;
+            }
+            break;
+        }
+
     }
 
-    public void seleccionarLista(int numLista){//hay 2 listas, puede seleccionar entre una de las 2 
+    
+    /** 
+     * @return double
+     */
+    public double getEmisora() {
+        return emisora;
+    }
+
+    
+    /** 
+     * @return int
+     */
+    public int getVolumen() {
+        return volumen;
+    }
+
+    
+    /** 
+     * @param getEmisorasGuardadas(
+     */
+    public void guardarEmisora(double emisora) {// Le da libertad al usuario de escribir directamente la emisora que
+                                                // desea guardar
+        // Hay que indicarle que las emisoras son de 80.0 a 110.0 :)
+        // String emisoraString = String.valueOf(emisora);// convierte el valor a string
+        // para guardarlo en el arraylist
+        // como strng
+        emisorasGuardadas.add(emisora);
+    }
+
+    
+    /** 
+     * @return List<Double>
+     */
+    public List<Double> getEmisorasGuardadas() {
+        return emisorasGuardadas;
+    }
+
+    
+    /** 
+     * @param numeroEmisora
+     */
+    public void cargarEmisora(int numeroEmisora) {
+        int nuEmisora = numeroEmisora - 1;// para que empiece en 0
+        double escogida = emisorasGuardadas.get(nuEmisora);
+        emisora = escogida;
+    }
+
+    
+    /** 
+     * @param getNumeroDeLista(
+     */
+    public void seleccionarLista(int numLista) {// hay 2 listas, puede seleccionar entre una de las 2
         numeroDeLista = numLista;
 
     }
 
-    public void cambiarCancion(int siguienteAnerior){//el menu debe ser algo asi(1. siguiente, 2. anterior)
+    
+    /** 
+     * @return int
+     */
+    public int getNumeroDeLista() {
+        return numeroDeLista;
+    }
 
-        if(contadorCancion < 4 && siguienteAnerior == 1 ){
+    
+    /** 
+     * @param lista
+     * @return String[]
+     */
+    public String[] getLista(int lista) {
+
+        String[] miLista = new String[] {};
+
+        if (lista == 1) {
+            miLista = new String[] { nombreCancion1[contadorCancion], duracion1[contadorCancion],
+                    autor1[contadorCancion], genero1[contadorCancion] };
+        }
+
+        if (lista == 2) {
+            miLista = new String[] { nombreCancion2[contadorCancion], duracion2[contadorCancion],
+                    autor2[contadorCancion], genero2[contadorCancion] };
+        }
+
+        return miLista;
+    }
+
+    
+    /** 
+     * @param 1
+     */
+    public void cambiarCancion(int siguienteAnerior) {// el menu debe ser algo asi(1. siguiente, 2. anterior)
+
+        if (contadorCancion < 3 && siguienteAnerior == 1) {
             contadorCancion = contadorCancion + 1;
         }
 
-        if(contadorCancion == 4 && siguienteAnerior == 1 ){
-            contadorCancion = 4;
+        if (contadorCancion == 3 && siguienteAnerior == 1) {
+            contadorCancion = 0;
         }
 
-        if(contadorCancion > 0 && siguienteAnerior == 2 ){
+        if (contadorCancion > 0 && siguienteAnerior == 2) {
             contadorCancion = contadorCancion - 1;
         }
 
-        if(contadorCancion == 0 && siguienteAnerior == 2 ){
-            contadorCancion = 0;
+        if (contadorCancion == 0 && siguienteAnerior == 2) {
+            contadorCancion = 3;
         }
     }
 
-    public String conectarTelefono(int telefono){
+    
+    /** 
+     * @param telefono
+     * @return String
+     */
+    public String conectarTelefono(int telefono) {
         String out = "";
-        if (telefono == 1){
+        if (telefono == 1) {
             out = "Telefono conectado";
         }
         return out;
     }
 
-    public String [] mostrarContactos(){//imprime la lista de contactos
-        return contactos; 
+    
+    /** 
+     * @param i++
+     * @return String
+     */
+    public String mostrarContactos() {// imprime la lista de contactos
+        String contactos = "\n";
+        for (int i = 0; i < this.contactos.length; i++) {
+            contactos += "\n(" + (i + 1) + ") " + this.contactos[i];
+        }
+        return contactos;
     }
 
-    public String llamarContacto(int opcion){ //Elige al contacto que desea llamar
+    
+    /** 
+     * @param 0
+     * @return String
+     */
+    public String llamarContacto(int opcion) { // Elige al contacto que desea llamar
         String Llamar = "";
-        if (opcion == 1){
-            Llamar = "Llamando al contacto juanito"
+        if (opcion == 0) {
+            Llamar = "No se esta llamando a nigun contacto";
         }
-        if (opcion == 2){
-            Llamar = "Llamando al contacto papa"
+        if (opcion == 1) {
+            Llamar = "Llamando al contacto juanito";
         }
-        if (opcion == 3){
-            Llamar = "Llamando al contacto mama"
+        if (opcion == 2) {
+            Llamar = "Llamando al contacto papa";
         }
-        if (opcion == 4){
-            Llamar = "Llamando al contacto abuelo"
+        if (opcion == 3) {
+            Llamar = "Llamando al contacto mama";
         }
-        return Llamar; 
+        if (opcion == 4) {
+            Llamar = "Llamando al contacto abuelo";
+        }
+        return Llamar;
     }
 
-    public String finalizarLlamada(int opcion){
+    
+    /** 
+     * @param opcion
+     * @return String
+     */
+    public String finalizarLlamada(int opcion) {
         String finalizar = "";
 
-        if(opcion == 1){
+        if (opcion == 1) {
             finalizar = "Llamada finalizada";
         }
-        return finalizar; 
+        return finalizar;
     }
 
-    public String cambiarLlamadaEspera(int llamada){
+    
+    /** 
+     * @param llamada
+     * @return String
+     */
+    public String cambiarLlamadaEspera(int llamada) {
         String LlamadaEspera = "";
-        if(llamada == 1){
-            LlamadaEspera = "La llamada está en espera";
+        if (llamada == 1) {
+            LlamadaEspera = "La llamada esta en espera";
         }
         return LlamadaEspera;
 
     }
-    public String pronosticoTiempo(int pronostico){
+
+    
+    /** 
+     * @param pronostico
+     * @return String
+     */
+    public String pronosticoTiempo(int pronostico) {
+        valorTiempo = (int) (Math.random() * 3 + 1);
         String Tiempo = "";
-        if (pronostico == 1){
-            if(valorTiempo == 1){
-                Tiempo = "El día estará soleado por la mañana";
+        if (pronostico == 1) {
+            if (valorTiempo == 1) {
+                Tiempo = "El dia estara soleado por la mañana";
             }
-            if(valorTiempo == 2){
-                Tiempo = "El día estará lluvioso por la tarde";
+            if (valorTiempo == 2) {
+                Tiempo = "El dia estara lluvioso por la tarde";
             }
-            if(valorTiempo == 3){
-                Tiempo = "El día estará templado por la madrugada";
+            if (valorTiempo == 3) {
+                Tiempo = "El dia estara templado por la madrugada";
             }
         }
-        return Tiempo; 
+        return Tiempo;
     }
+
     
+    /** 
+     * @return String[]
+     */
+    public String[] getNombreCancion1() {
+        return nombreCancion1;
+    }
+
+    
+    /** 
+     * @return String[]
+     */
+    public String[] getAutor1() {
+        return autor1;
+    }
+
+    
+    /** 
+     * @return String[]
+     */
+    public String[] getNombreCancion2() {
+        return nombreCancion2;
+    }
+
+    
+    /** 
+     * @return String[]
+     */
+    public String[] getAutor2() {
+        return autor2;
+    }
+
+    
+    /** 
+     * @param contadorCancion
+     */
+    public void setContadorCancion(int contadorCancion) {
+        this.contadorCancion = contadorCancion;
+    }
+
 }

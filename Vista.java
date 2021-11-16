@@ -1,3 +1,13 @@
+/**
+ * RadioA.java
+ * 
+ * @author Jeremy Mejía, Héctor de León, Sofía Salguero
+ * @version 16/11/2021 
+ * 
+ * Clase Vista para realizar toda la interaccion con el usuario
+ */
+
+
 import java.util.*;
 
 public class Vista {
@@ -19,6 +29,10 @@ public class Vista {
         System.out.println("-----La radio se encuentra apagada.-----");
     }
 
+    
+    /** 
+     * @return int
+     */
     public int Menu1() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Encender la radio\n" + "2. Salir\n";
         System.out.println(
@@ -32,6 +46,10 @@ public class Vista {
         System.out.println("\nPor favor, selecciona una opcion correcta.\n");
     }
 
+    
+    /** 
+     * @return int
+     */
     public int tipoRadio() {
         String Mensaje = "\nEscoja un modelo de carro\n" + "1. Clase S\n" + "2. Clase A\n" + "3. Clase C\n"
                 + "4. Salir del simulador\n";
@@ -49,6 +67,10 @@ public class Vista {
                         + "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
     }
 
+    
+    /** 
+     * @return int
+     */
     public int modoRadio() {
         String Mensaje = "\nEn que modo desea comenzar su radio?\n" + "1. Modo Radio\n" + "2. Modo Reproduccion\n"
                 + "3. Modo telefono\n" + "4. Modo Productividad\n" + "5. Cambiar clase radio\n";
@@ -59,6 +81,12 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @param emisora
+     * @param AM
+     * @param volumen
+     */
     public void pantallaRadio(double emisora, String AM, int volumen) {
         String Mensaje = "\n----- Modo Radio -----\n" + "\n" + emisora + " - " + AM + "\n" + "Volumen: " + volumen;
         System.out.println(
@@ -66,6 +94,10 @@ public class Vista {
                         + Mensaje);
     }
 
+    
+    /** 
+     * @return int
+     */
     public int menuRadio() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Cambiar de FM a AM\n" + "2. Cambiar emisora\n"
                 + "3. Guardar emisora\n" + "4. Cargar emisora\n" + "5. Cambiar volumen\n" + "6. Salir modo radio";
@@ -76,6 +108,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int menuVolumen() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Subir Volumen\n" + "2. Bajar Volumen\n" + "3. Salir de opcion\n";
         System.out.println(
@@ -85,6 +121,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int menuEmisora() {
         String Mensaje = "\nHacia donde desea cambiar?\n" + "1. Arriba\n" + "2. Abajo\n" + "3. Salir de opcion\n";
         System.out.println(
@@ -94,6 +134,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return double
+     */
     public double guardarEmisora() {
         String Mensaje = "\nEscriba la emisora que desea guardar (desde 80.0 hasta 110.0)\n";
         System.out.println(
@@ -103,6 +147,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int otraEmisora() {
         String Mensaje = "\nDesea guardar otra emisora?\n" + "1. Si\n" + "2. No\n";
         System.out.println(
@@ -116,6 +164,10 @@ public class Vista {
         System.out.println("Se ha guardado la emisora con exito!");
     }
 
+    
+    /** 
+     * @param emisorasGuardadas
+     */
     public void emisorasGuardadas(List<Double> emisorasGuardadas) {
         for (int i = 0; i < emisorasGuardadas.size(); i++) {
             System.out.println("\n(" + (i + 1) + ") " + emisorasGuardadas.get(i));
@@ -123,6 +175,10 @@ public class Vista {
 
     }
 
+    
+    /** 
+     * @return int
+     */
     public int escogida() {
         System.out.println("\nCual emisora desea cargar?");
         int opcion = scan.nextInt();
@@ -134,6 +190,12 @@ public class Vista {
         System.out.println("\nNo hay emisoras guardadas.");
     }
 
+    
+    /** 
+     * @param numeroDeLista
+     * @param miLista
+     * @param volumen
+     */
     public void pantallaReproduccion(int numeroDeLista, String[] miLista, int volumen) {
         String Mensaje = "\n----- Modo Reproduccion -----\n" + "\nLista de reproduccion: " + numeroDeLista
                 + " \n-Cancion: " + miLista[0] + "\n-Duracion: " + miLista[1] + "\n-Autor: " + miLista[2]
@@ -143,6 +205,10 @@ public class Vista {
                         + Mensaje);
     }
 
+    
+    /** 
+     * @return int
+     */
     public int menuReproduccion() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Seleccionar lista de reproduccion\n" + "2. Cambiar cancion\n"
                 + "3. Escuchar cancion\n" + "4. Cambiar volumen\n" + "5. Salir modo reproduccion";
@@ -153,6 +219,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int seleccionarLista() {
         String Mensaje = "\nCual lista desea escoger?\n" + "1. Lista 1\n" + "2. Lista 2\n";
         System.out.println(
@@ -162,11 +232,19 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @param numero
+     */
     public void miLista(int numero) {
         System.out.println("\nHa seleccionado la lista: " + numero);
 
     }
 
+    
+    /** 
+     * @return int
+     */
     public int cambiarCancion() {
         String Mensaje = "\nHacia donde desea cambiar?\n" + "1. Arriba\n" + "2. Abajo\n";
         System.out.println(
@@ -176,6 +254,14 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @param numLista
+     * @param nombreCancion1
+     * @param duracion1
+     * @param nombreCancion2
+     * @param duracion2
+     */
     public void listaReproduccion(int numLista, String[] nombreCancion1, String[] duracion1, String[] nombreCancion2,
             String[] duracion2) {
         if (numLista == 1) {
@@ -194,6 +280,10 @@ public class Vista {
         }
     }
 
+    
+    /** 
+     * @return int
+     */
     public int cancionEscogida() {
         System.out.println("\nCual cancion desea escoger?");
         int opcion = scan.nextInt();
@@ -205,6 +295,10 @@ public class Vista {
         System.out.println("----- No se encuentra ningun telefono conectado-----");
     }
 
+    
+    /** 
+     * @return int
+     */
     public int Menu3() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Conectar Telefono\n" + "2. Salir\n";
         System.out.println(
@@ -214,10 +308,18 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @param string
+     */
     public void imprimir(String string) {
         System.out.println(string);
     }
 
+    
+    /** 
+     * @return int
+     */
     public int Menu4S() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Mostrar contactos\n" + "2. Llamar a contacto\n"
                 + "3. Finalizar llamada\n" + "4. Cambiar a bocinas o auriculares\n" + "5. Subir volumen\n"
@@ -229,6 +331,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int Menu4A() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Mostrar contactos\n" + "2. Llamar a contacto\n"
                 + "3. Finalizar llamada\n" + "4. Llamar al ultimo contacto que se llamo\n" + "5. Subir volumen\n"
@@ -240,6 +346,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int Menu4C() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Mostrar contactos\n" + "2. Llamar a contacto\n"
                 + "3. Finalizar llamada\n" + "4. Colocar llamada en espera\n" + "5. Subir volumen\n"
@@ -251,6 +361,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int llamar() {
         String Mensaje = "\nA cual contacto desea llamar?\n" + "1. Juanito\n" + "2. Papa\n" + "3. Mama\n"
                 + "4. Abuelo\n";
@@ -261,6 +375,13 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @param telefono
+     * @param contacto
+     * @param bocinasAuriculares
+     * @param volumen
+     */
     public void pantallaTelefono(String telefono, String contacto, String bocinasAuriculares, int volumen) {
         String Mensaje = "\n----- Modo Telefono -----\n" + "\nTelefono conectado : " + telefono + " \n-" + contacto
                 + "\n-Llamando por : " + bocinasAuriculares + "\n-Volumen: " + volumen;
@@ -269,6 +390,12 @@ public class Vista {
                         + Mensaje);
     }
 
+    
+    /** 
+     * @param telefono
+     * @param contacto
+     * @param volumen
+     */
     public void pantallaTelefonoA(String telefono, String contacto, int volumen) {
         String Mensaje = "\n----- Modo Telefono -----\n" + "\nTelefono conectado : " + telefono + " \n-" + contacto
                 + "\n-Volumen: " + volumen;
@@ -277,6 +404,13 @@ public class Vista {
                         + Mensaje);
     }
 
+    
+    /** 
+     * @param telefono
+     * @param contacto
+     * @param espera
+     * @param volumen
+     */
     public void pantallaTelefonoC(String telefono, String contacto, String espera, int volumen) {
         String Mensaje = "\n----- Modo Telefono -----\n" + "\nTelefono conectado : " + telefono + " \n-" + contacto
                 + " \n-" + espera + "\n-Volumen: " + volumen;
@@ -285,6 +419,12 @@ public class Vista {
                         + Mensaje);
     }
 
+    
+    /** 
+     * @param viaje
+     * @param viajeA
+     * @param volumen
+     */
     public void pantallaProductividadS(String viaje, String viajeA, int volumen) {
         String Mensaje = "\n----- Modo Productividad -----\n" + " \n-Viaje actual: " + viajeA + "\n-Proximo viaje : "
                 + viaje + "\n-Volumen: " + volumen;
@@ -293,6 +433,10 @@ public class Vista {
                         + Mensaje);
     }
 
+    
+    /** 
+     * @return int
+     */
     public int viajar() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Planificar viaje\n" + "2. Viajar a lugar planificado\n"
                 + "3. Subir volumen\n" + "4. Salir Modo Productividad\n";
@@ -303,6 +447,10 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String destino() {
         System.out.println("\nEscriba a donde desea ir: ");
         scan.nextLine();
@@ -311,6 +459,10 @@ public class Vista {
         return nombre;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int productividadA() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Ver tarjeta de presentacion\n" + "2. Subir Volumen\n"
                 + "3. Salir Modo Productividad\n";
@@ -321,6 +473,11 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @param c
+     * @param volumen
+     */
     public void pantallaProductividadA(int c, int volumen) {
         String contacto = " ";
         switch (c) {
@@ -351,6 +508,10 @@ public class Vista {
                         + Mensaje);
     }
 
+    
+    /** 
+     * @return int
+     */
     public int mostrar() {
         String Mensaje = "\nDe cual contacto desea ver la tarjeta de presentacion?\n" + "1. Juanito\n" + "2. Papa\n"
                 + "3. Mama\n" + "4. Abuelo\n";
@@ -361,6 +522,11 @@ public class Vista {
         return opcion;
     }
 
+    
+    /** 
+     * @param tiempo
+     * @param volumen
+     */
     public void pantallaProductividadC(String tiempo, int volumen) {
         String Mensaje = "\n----- Modo Productividad -----\n" + tiempo + "\n-Volumen: " + volumen;
         System.out.println(
@@ -368,6 +534,10 @@ public class Vista {
                         + Mensaje);
     }
 
+    
+    /** 
+     * @return int
+     */
     public int tiempo() {
         String Mensaje = "\nQue desea hacer?\n" + "1. Refrescar pronostico del tiempo\n" + "2. Subir volumen\n"
                 + "3. Salir modo productividad\n" ;
