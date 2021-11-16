@@ -1,5 +1,7 @@
 import java.util.*;
 
+import javax.lang.model.util.ElementScanner14;
+
 public class Controlador {
     public static void main(String[] args) {
         Vista vis = new Vista();
@@ -279,11 +281,275 @@ public class Controlador {
                             break;
 
                         case 2: // Reproduccion
+                            boolean banderaReproduccion = true;
+                            int menuReproduccion = 0;
+
+                            while (banderaReproduccion) {
+                                vis.pantallaReproduccion(radioS.getNumeroDeLista(),
+                                        radioS.getLista(radioS.getNumeroDeLista()), radioS.getVolumen());
+
+                                do {
+                                    try {
+                                        vis = new Vista();
+                                        menuReproduccion = vis.menuReproduccion();
+                                        p = true;
+                                    } catch (InputMismatchException ex) {
+                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                        p = false;
+                                    }
+                                } while (!p);
+
+                                switch (menuReproduccion) {
+                                case 1: // Seleccionar lista de reproducción
+                                    boolean bandera3 = true;
+                                    int numLista = 0;
+                                    while (bandera3) {
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                numLista = vis.seleccionarLista();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (numLista > 2) {
+                                            vis.fueraMenu();
+
+                                        } else {
+                                            vis.miLista(numLista);
+                                            radioS.seleccionarLista(numLista);
+                                            bandera3 = false;
+                                        }
+
+                                    }
+
+                                    break;
+
+                                case 2: // Cambiar canción
+                                    boolean bandera4 = true;
+                                    while (bandera4) {
+                                        int siguienteAnerior = 0;
+
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                siguienteAnerior = vis.cambiarCancion();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (siguienteAnerior > 2) {
+                                            vis.fueraMenu();
+
+                                        } else {
+                                            radioS.cambiarCancion(siguienteAnerior);
+                                            bandera4 = false;
+
+                                        }
+
+                                    }
+                                    break;
+
+                                case 3: // Escuchar canción
+                                    boolean bandera5 = true;
+                                    while (bandera5) {
+                                        int nLista = 0;
+
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                nLista = vis.seleccionarLista();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (nLista > 2) {
+                                            vis.fueraMenu();
+
+                                        } else {
+                                            radioS.seleccionarLista(nLista);
+                                            int cancion = 0;
+                                            vis.listaReproduccion(nLista, radioS.getNombreCancion1(),
+                                                    radioS.getAutor1(), radioS.getNombreCancion2(), radioS.getAutor2());
+
+                                            boolean bandera6 = true;
+
+                                            while (bandera6) {
+                                                do {
+                                                    try {
+                                                        vis = new Vista();
+                                                        cancion = vis.cancionEscogida();
+                                                        p = true;
+                                                    } catch (InputMismatchException ex) {
+                                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                                        p = false;
+                                                    }
+                                                } while (!p);
+
+                                                if (cancion > 4) {
+                                                    vis.fueraMenu();
+
+                                                } else {
+                                                    radioS.setContadorCancion(cancion - 1);
+                                                    bandera6 = false;
+                                                    bandera5 = false;
+                                                }
+
+                                            }
+
+                                        }
+                                    }
+                                    break;
+
+                                case 4: // cambiar volumen
+                                    boolean bVolumen = true;
+                                    while (bVolumen) {
+                                        int opVolumen = 0;
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                opVolumen = vis.menuVolumen();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (opVolumen == 1) {
+                                            radioS.cambiarVolumen(1);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 2) {
+                                            radioS.cambiarVolumen(2);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 3) {
+                                            bVolumen = false;
+
+                                        } else {
+                                            vis.fueraMenu();
+                                        }
+                                    }
+
+                                    break;
+
+                                case 5: // Salir
+                                    banderaReproduccion = false;
+
+                                    break;
+
+                                default:
+                                    vis.fueraMenu();
+                                    break;
+                                }
+
+                            }
 
                             break;
 
                         case 3: // Telefono
+                            vis.noTelefono();
+                            int telefono = 0;
+                            boolean bandera7 = true;
 
+                            while (bandera7) {
+                                do {
+                                    try {
+                                        vis = new Vista();
+                                        telefono = vis.Menu3();
+                                        p = true;
+                                    } catch (InputMismatchException ex) {
+                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                        p = false;
+                                    }
+                                } while (!p);
+
+                                if (telefono == 1) {
+                                    vis.imprimir(radioS.conectarTelefono(telefono));
+                                    boolean conectado = true;
+
+                                    while (conectado) {
+                                        int op = 0;
+
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                op = vis.Menu4S();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        switch (op) {
+                                        case 1: // Mostrar contactos
+                                            vis.imprimir(radioS.mostrarContactos());
+
+                                            break;
+                                        case 2: // Llamar a contacto
+                                            vis.imprimir(radioS.mostrarContactos());
+                                            boolean bandera8 = true;
+
+                                            while (bandera8) {
+                                                int contacto = 0;
+                                                do {
+                                                    try {
+                                                        vis = new Vista();
+                                                        contacto = vis.llamar();
+                                                        p = true;
+                                                    } catch (InputMismatchException ex) {
+                                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                                        p = false;
+                                                    }
+                                                } while (!p);
+
+                                                if (contacto > 4) {
+                                                    vis.fueraMenu();
+
+                                                } else {
+                                                    vis.imprimir(radioS.llamarContacto(contacto));
+                                                    bandera8 = false;
+                                                }
+
+                                            }
+                                            break;
+                                        case 3: // Finalizar llamada
+
+                                            break;
+                                        case 4: // Cambiar a bocinas o auriculares
+
+                                            break;
+
+                                        case 5: // Salir
+                                            conectado = false;
+                                            bandera7 = false;
+                                            break;
+
+                                        default:
+                                            vis.fueraMenu();
+                                            break;
+                                        }
+                                    }
+                                    bandera7 = false;
+
+                                } else if (telefono == 2) {
+                                    bandera7 = false;
+                                }
+
+                                else {
+                                    vis.fueraMenu();
+                                }
+
+                            }
                             break;
 
                         case 4: // Productividad
@@ -519,6 +785,177 @@ public class Controlador {
                             break;
 
                         case 2: // Reproduccion
+                            boolean banderaReproduccion = true;
+                            int menuReproduccion = 0;
+
+                            while (banderaReproduccion) {
+                                vis.pantallaReproduccion(radioA.getNumeroDeLista(),
+                                        radioA.getLista(radioA.getNumeroDeLista()), radioA.getVolumen());
+
+                                do {
+                                    try {
+                                        vis = new Vista();
+                                        menuReproduccion = vis.menuReproduccion();
+                                        p = true;
+                                    } catch (InputMismatchException ex) {
+                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                        p = false;
+                                    }
+                                } while (!p);
+
+                                switch (menuReproduccion) {
+                                case 1: // Seleccionar lista de reproducción
+                                    boolean bandera3 = true;
+                                    int numLista = 0;
+                                    while (bandera3) {
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                numLista = vis.seleccionarLista();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (numLista > 2) {
+                                            vis.fueraMenu();
+
+                                        } else {
+                                            vis.miLista(numLista);
+                                            radioA.seleccionarLista(numLista);
+                                            bandera3 = false;
+                                        }
+
+                                    }
+
+                                    break;
+
+                                case 2: // Cambiar canción
+                                    boolean bandera4 = true;
+                                    while (bandera4) {
+                                        int siguienteAnerior = 0;
+
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                siguienteAnerior = vis.cambiarCancion();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (siguienteAnerior > 2) {
+                                            vis.fueraMenu();
+
+                                        } else {
+                                            radioA.cambiarCancion(siguienteAnerior);
+                                            bandera4 = false;
+
+                                        }
+
+                                    }
+                                    break;
+
+                                case 3: // Escuchar canción
+                                    boolean bandera5 = true;
+                                    while (bandera5) {
+                                        int nLista = 0;
+
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                nLista = vis.seleccionarLista();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (nLista > 2) {
+                                            vis.fueraMenu();
+
+                                        } else {
+                                            radioA.seleccionarLista(nLista);
+                                            int cancion = 0;
+                                            vis.listaReproduccion(nLista, radioA.getNombreCancion1(),
+                                                    radioA.getAutor1(), radioA.getNombreCancion2(), radioA.getAutor2());
+
+                                            boolean bandera6 = true;
+
+                                            while (bandera6) {
+                                                do {
+                                                    try {
+                                                        vis = new Vista();
+                                                        cancion = vis.cancionEscogida();
+                                                        p = true;
+                                                    } catch (InputMismatchException ex) {
+                                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                                        p = false;
+                                                    }
+                                                } while (!p);
+
+                                                if (cancion > 4) {
+                                                    vis.fueraMenu();
+
+                                                } else {
+                                                    radioA.setContadorCancion(cancion - 1);
+                                                    bandera6 = false;
+                                                    bandera5 = false;
+                                                }
+
+                                            }
+
+                                        }
+                                    }
+                                    break;
+
+                                case 4: // cambiar volumen
+                                    boolean bVolumen = true;
+                                    while (bVolumen) {
+                                        int opVolumen = 0;
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                opVolumen = vis.menuVolumen();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (opVolumen == 1) {
+                                            radioA.cambiarVolumen(1);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 2) {
+                                            radioA.cambiarVolumen(2);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 3) {
+                                            bVolumen = false;
+
+                                        } else {
+                                            vis.fueraMenu();
+                                        }
+                                    }
+
+                                    break;
+
+                                case 5: // Salir
+                                    banderaReproduccion = false;
+
+                                    break;
+
+                                default:
+                                    vis.fueraMenu();
+                                    break;
+                                }
+
+                            }
 
                             break;
 
@@ -760,6 +1197,177 @@ public class Controlador {
                             break;
 
                         case 2: // Reproduccion
+                            boolean banderaReproduccion = true;
+                            int menuReproduccion = 0;
+
+                            while (banderaReproduccion) {
+                                vis.pantallaReproduccion(radioC.getNumeroDeLista(),
+                                        radioC.getLista(radioC.getNumeroDeLista()), radioC.getVolumen());
+
+                                do {
+                                    try {
+                                        vis = new Vista();
+                                        menuReproduccion = vis.menuReproduccion();
+                                        p = true;
+                                    } catch (InputMismatchException ex) {
+                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                        p = false;
+                                    }
+                                } while (!p);
+
+                                switch (menuReproduccion) {
+                                case 1: // Seleccionar lista de reproducción
+                                    boolean bandera3 = true;
+                                    int numLista = 0;
+                                    while (bandera3) {
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                numLista = vis.seleccionarLista();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (numLista > 2) {
+                                            vis.fueraMenu();
+
+                                        } else {
+                                            vis.miLista(numLista);
+                                            radioC.seleccionarLista(numLista);
+                                            bandera3 = false;
+                                        }
+
+                                    }
+
+                                    break;
+
+                                case 2: // Cambiar canción
+                                    boolean bandera4 = true;
+                                    while (bandera4) {
+                                        int siguienteAnerior = 0;
+
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                siguienteAnerior = vis.cambiarCancion();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (siguienteAnerior > 2) {
+                                            vis.fueraMenu();
+
+                                        } else {
+                                            radioC.cambiarCancion(siguienteAnerior);
+                                            bandera4 = false;
+
+                                        }
+
+                                    }
+                                    break;
+
+                                case 3: // Escuchar canción
+                                    boolean bandera5 = true;
+                                    while (bandera5) {
+                                        int nLista = 0;
+
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                nLista = vis.seleccionarLista();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (nLista > 2) {
+                                            vis.fueraMenu();
+
+                                        } else {
+                                            radioC.seleccionarLista(nLista);
+                                            int cancion = 0;
+                                            vis.listaReproduccion(nLista, radioC.getNombreCancion1(),
+                                                    radioC.getAutor1(), radioC.getNombreCancion2(), radioC.getAutor2());
+
+                                            boolean bandera6 = true;
+
+                                            while (bandera6) {
+                                                do {
+                                                    try {
+                                                        vis = new Vista();
+                                                        cancion = vis.cancionEscogida();
+                                                        p = true;
+                                                    } catch (InputMismatchException ex) {
+                                                        System.out.println("\nPor favor, ingresa un numero\n");
+                                                        p = false;
+                                                    }
+                                                } while (!p);
+
+                                                if (cancion > 4) {
+                                                    vis.fueraMenu();
+
+                                                } else {
+                                                    radioC.setContadorCancion(cancion - 1);
+                                                    bandera6 = false;
+                                                    bandera5 = false;
+                                                }
+
+                                            }
+
+                                        }
+                                    }
+                                    break;
+
+                                case 4: // cambiar volumen
+                                    boolean bVolumen = true;
+                                    while (bVolumen) {
+                                        int opVolumen = 0;
+                                        do {
+                                            try {
+                                                vis = new Vista();
+                                                opVolumen = vis.menuVolumen();
+                                                p = true;
+                                            } catch (InputMismatchException ex) {
+                                                System.out.println("\nPor favor, ingresa un numero\n");
+                                                p = false;
+                                            }
+                                        } while (!p);
+
+                                        if (opVolumen == 1) {
+                                            radioC.cambiarVolumen(1);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 2) {
+                                            radioC.cambiarVolumen(2);
+                                            bVolumen = false;
+                                        } else if (opVolumen == 3) {
+                                            bVolumen = false;
+
+                                        } else {
+                                            vis.fueraMenu();
+                                        }
+                                    }
+
+                                    break;
+
+                                case 5: // Salir
+                                    banderaReproduccion = false;
+
+                                    break;
+
+                                default:
+                                    vis.fueraMenu();
+                                    break;
+                                }
+
+                            }
 
                             break;
 

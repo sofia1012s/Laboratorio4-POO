@@ -134,4 +134,108 @@ public class Vista {
         System.out.println("\nNo hay emisoras guardadas.");
     }
 
+    public void pantallaReproduccion(int numeroDeLista, String[] miLista, int volumen) {
+        String Mensaje = "\n----- Modo Reproduccion -----\n" + "\nLista de reproduccion: " + numeroDeLista
+                + " \n-Cancion: " + miLista[0] + "\n-Duracion: " + miLista[1] + "\n-Autor: " + miLista[2]
+                + "\n-Genero: " + miLista[3] + "\n-Volumen: " + volumen;
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+    }
+
+    public int menuReproduccion() {
+        String Mensaje = "\nQue desea hacer?\n" + "1. Seleccionar lista de reproduccion\n" + "2. Cambiar cancion\n"
+                + "3. Escuchar cancion\n" + "4. Cambiar volumen\n" + "5. Salir modo reproduccion";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public int seleccionarLista() {
+        String Mensaje = "\nCual lista desea escoger?\n" + "1. Lista 1\n" + "2. Lista 2\n";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public void miLista(int numero) {
+        System.out.println("\nHa seleccionado la lista: " + numero);
+
+    }
+
+    public int cambiarCancion() {
+        String Mensaje = "\nHacia donde desea cambiar?\n" + "1. Arriba\n" + "2. Abajo\n";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public void listaReproduccion(int numLista, String[] nombreCancion1, String[] duracion1, String[] nombreCancion2,
+            String[] duracion2) {
+        if (numLista == 1) {
+            System.out.println("\nLista de reproduccion # 1");
+
+            for (int i = 0; i < nombreCancion1.length; i++) {
+                System.out.println("\n(" + (i + 1) + ") " + nombreCancion1[i] + " - " + duracion1[i]);
+            }
+
+        } else if (numLista == 2) {
+            System.out.println("\nLista de reproduccion # 2");
+            for (int i = 0; i < nombreCancion2.length; i++) {
+                System.out.println("\n(" + (i + 1) + ") " + nombreCancion2[i] + " - " + duracion2[i]);
+            }
+
+        }
+    }
+
+    public int cancionEscogida() {
+        System.out.println("\nCual cancion desea escoger?");
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public void noTelefono() {
+
+        System.out.println("----- No se encuentra ningun telefono conectado-----");
+    }
+
+    public int Menu3() {
+        String Mensaje = "\nQue desea hacer?\n" + "1. Conectar Telefono\n" + "2. Salir\n";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public void imprimir(String string) {
+        System.out.println(string);
+    }
+
+    public int Menu4S() {
+        String Mensaje = "\nQue desea hacer?\n" + "1. Mostrar contactos\n" + "2. Llamar a contacto\n"
+                + "3. Finalizar llamada\n" + "4. Cambiar a bocinas o auriculares\n" + "5. Salir modo telefono\n";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
+    public int llamar() {
+        String Mensaje = "\nA cual contacto desea llamar?\n" + "1. Juanito\n" + "2. Papa\n"
+                + "3. Mama\n" + "4. Abuelo\n";
+        System.out.println(
+                "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n"
+                        + Mensaje);
+        int opcion = scan.nextInt();
+        return opcion;
+    }
+
 }
